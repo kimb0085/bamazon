@@ -105,7 +105,7 @@ function addInventory() {
             }, {
               product_name: answer.product
             }], function(err, res){
-              // console.log("Success! Product: " + answer.product + " quantity has been updated to: " + "newStockQty");
+              console.log("Success! Product: " + answer.product + " quantity has been updated to: " + newStockQty);
           });
         });
           

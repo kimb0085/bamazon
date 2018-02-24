@@ -56,14 +56,17 @@ function runQuery() {
     });
 }
 
-//Pull product information from SQL to node
-function showProducts() {
-	var query =	connection.query("SELECT * FROM products", function(err, res){
-		if (err) throw err;
 
-		console.log("All of the products available are: " + res);
-	});
+function showProducts() {
+  console.log("All products available include...\n");
+  connection.query("SELECT * FROM products", function(err, res) {
+    if (err) throw err;
+    // Log all results of the SELECT statement
+    console.log(res);
+    connection.end();
+  });
 }
+
 
 //View Low inventory
 function viewLowInventory() {
@@ -96,8 +99,9 @@ function addInventory() {
         var query = connection.query('SELECT * FROM products WHERE ?', {product_name: answer.product}, function(err, res){
           if (err) throw err;       
 
+            var newStockQty = res[0].stock_quantity + answer.units
             connection.query('UPDATE products SET ? WHERE ?', [{
-              stock_quantity: res[0].stock_quantity + answer.units
+              stock_quantity: newStockQty
             }, {
               product_name: answer.product
             }], function(err, res){

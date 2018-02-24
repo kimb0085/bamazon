@@ -49,7 +49,7 @@ function placeOrder() {
 						var cost = res[0].price * answer.units
 						console.log("You owe: $" + cost + " for " + answer.units + "\nYour order has been placed, thank you, shop with us again!");
 
-						var newStockQty = res[0].stock_quantity - answer.units
+						var newStockQty = res[0].stock_quantity - answer.units;
 						connection.query('UPDATE products SET ? WHERE ?', [{
 							stock_quantity: newStockQty
 						}, {

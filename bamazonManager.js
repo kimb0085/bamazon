@@ -99,7 +99,7 @@ function addInventory() {
         var query = connection.query('SELECT * FROM products WHERE ?', {product_name: answer.product}, function(err, res){
           if (err) throw err;       
 
-            var newStockQty = res[0].stock_quantity + answer.units
+            var newStockQty = res[0].stock_quantity + parseFloat(answer.units);
             connection.query('UPDATE products SET ? WHERE ?', [{
               stock_quantity: newStockQty
             }, {
